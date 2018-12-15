@@ -21,4 +21,8 @@ El repo contiene notebooks de [jupyter](https://jupyter.org/) en la carpeta `not
 
 ## Datasets
 
-Script para descarga: TODO
+Para descargar una copia de los datasets listados en el archivo `datasets/manifest.json`, correr el 
+scrapper de scrapy via:
+```bash
+scrapy runspider datasets/download.py
+```
