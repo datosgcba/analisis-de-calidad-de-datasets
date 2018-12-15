@@ -1,3 +1,8 @@
+# Análisis de calidad de datasets
+
+Este repositorio pretende ser un registro del analisis de calidad de los datasets presentes en 
+[data.buenosaires.gob.ar](https://data.buenosaires.gob.ar/) 
+
 ## Setup
 
 Crear por única vez un [virtualenv](https://virtualenv.pypa.io/en/latest/) usando python 3.
