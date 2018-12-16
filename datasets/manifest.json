@@ -1,79 +1,43 @@
-[{
-  "name": "Obras Registradas",
-  "slug": "obras-registradas"
-}, {
-  "name": "Sueldo Funcionarios",
-  "slug": "sueldo-funcionarios"
-}, {
-  "name": "Sistema Único de Atención Ciudadana",
-  "slug": "sistema-unico-de-atencion-ciudadana"
-}, {
-  "name": "Acceso a la Información Pública",
-  "slug": "acceso-a-la-informacion-publica"
-}, {
-  "name": "Subte: Viajes Molinetes",
-  "slug": "subte-viajes-molinetes"
-}, {
-  "name": "Bicicletas Públicas",
-  "slug": "bicicletas-publicas"
-}, {
-  "name": "BA Obras",
-  "slug": "ba-obras"
-}, {
-  "name": "Presupuesto Ejecutado",
-  "slug": "presupuesto-ejecutado"
-}, {
-  "name": "Set Filmaciones",
-  "slug": "set-filmaciones"
-}, {
-  "name": "Colectivos",
-  "slug": "colectivos"
-}, {
-  "name": "Colectivos: GTFS",
-  "slug": "colectivos-gtfs"
-}, {
-  "name": "Presupuesto Sancionado",
-  "slug": "presupuesto-sancionado"
-}, {
-  "name": "Obras iniciadas",
-  "slug": "obras-iniciadas"
-}, {
-  "name": "Subte: GTFS",
-  "slug": "subte-gtfs"
-}, {
-  "name": "Flujo Vehicular por Unslugades de Peaje AUSA",
-  "slug": "flujo-vehicular-por-unidades-de-peaje-ausa"
-}, {
-  "name": "Sensores de Tránsito",
-  "slug": "sensores-de-transito"
-}, {
-  "name": "Calles",
-  "slug": "calles"
-}, {
-  "name": "Establecimientos Educativos",
-  "slug": "establecimientos-educativos"
-}, {
-  "name": "Código de Planeamiento Urbano",
-  "slug": "codigo-de-planeamiento-urbano"
-}, {
-  "name": "Relevamiento Usos del Suelo",
-  "slug": "relevamiento-usos-del-suelo"
-}, {
-  "name": "Pauta Publicitaria",
-  "slug": "pauta-publicitaria"
-}, {
-  "name": "Dependencias culturales",
-  "slug": "dependencias-culturales"
-}, {
-  "name": "Declaraciones Juradas",
-  "slug": "declaraciones-juradas"
-}, {
-  "name": "Veredas",
-  "slug": "veredas"
-}, {
-  "name": "Manzanas",
-  "slug": "manzanas"
-}, {
-  "name": "Parcelas",
-  "slug": "parcelas"
-}]
+[
+  "obras-registradas",
+  "sueldo-funcionarios",
+  "sistema-unico-de-atencion-ciudadana",
+  "acceso-a-la-informacion-publica",
+  "subte-viajes-molinetes",
+  "bicicletas-publicas",
+  "ba-obras",
+  "presupuesto-ejecutado",
+  "set-filmaciones",
+  "colectivos",
+  "colectivos-gtfs",
+  "presupuesto-sancionado",
+  "obras-iniciadas",
+  "subte-gtfs",
+  "flujo-vehicular-por-unidades-de-peaje-ausa",
+  "sensores-de-transito",
+  "calles",
+  "establecimientos-educativos",
+  "codigo-de-planeamiento-urbano",
+  "relevamiento-usos-del-suelo",
+  "pauta-publicitaria",
+  "dependencias-culturales",
+  "declaraciones-juradas",
+  "veredas",
+  "manzanas",
+  "parcelas",
+  "seguridad-vial-autopistas-ausa",
+  "transportes-autorizados-de-pasajeros",
+  "locales-bailables",
+  "registro-de-guias-de-turismo",
+  "terrenos-valor-de-oferta",
+  "subte-trenes-despachados",
+  "arbolado-publico-lineal",
+  "arbolado-en-espacios-verdes",
+  "calidad-de-aire",
+  "comunas",
+  "barrios",
+  "estaciones-bicicletas-publicas",
+  "portales-inclusivos",
+  "centros-de-salud-y-accion-comunitaria-cesac",
+  "hospitales"
+]

@@ -17,8 +17,7 @@ class DatasetIterator:
     def next_dataset(cls):
         while len(cls.manifest) != 0:
             candidate_dataset = cls.manifest.pop()
-            slug = candidate_dataset['slug']
-            dataset_folder = os.path.join(root_datasets_folder, slug)
+            dataset_folder = os.path.join(root_datasets_folder, candidate_dataset)
             if not os.path.exists(dataset_folder):
                 return candidate_dataset
         return None
@@ -45,35 +44,31 @@ class DatasetsSpider(scrapy.Spider):
         dataset = DatasetIterator.next_dataset()
         if dataset is None:
             return
-        slug = dataset['slug']
-        url = 'https://data.buenosaires.gob.ar/api/datasets?fields=id&slug=%s' % slug
+        url = 'https://data.buenosaires.gob.ar/api/datasets?fields=id&slug=%s' % dataset
         yield Request(
             url=url,
-            callback=self.scoped_lambda(self.get_download_url, slug),
+            callback=self.scoped_lambda(self.get_download_url, dataset),
             headers={'Authorization': 'Bearer %s' % self.authorizaton_bearer}
         )
 
-    def get_download_url(self, response, slug):
+    def get_download_url(self, response, dataset):
         response_data = json.loads(response.body)['data']
         if len(response_data) == 0:
             return
         dataset_id = response_data[0]['id']
-        self.logger.info('Got id %s for %s', dataset_id, slug)
+        self.logger.info('Got id %s for %s', dataset_id, dataset)
         url = 'https://data.buenosaires.gob.ar/api/datasets/%s/download' % dataset_id
         yield Request(
             url=url,
-            callback=self.scoped_lambda(self.save_file, slug),
+            callback=self.scoped_lambda(self.save_file, dataset),
         )
 
-    def save_file(self, response, slug):
-        file_path = os.path.join(root_datasets_folder, '%s.zip' % slug)
+    def save_file(self, response, dataset):
+        file_path = os.path.join(root_datasets_folder, '%s.zip' % dataset)
         self.logger.info('Saving file to %s', file_path)
         with open(file_path, 'wb') as new_dataset_file:
             new_dataset_file.write(response.body)
-        unzip_folder = os.path.join(root_datasets_folder, slug)
-        if not os.path.exists(unzip_folder):
-            os.makedirs(unzip_folder)
         with zipfile.ZipFile(file_path, 'r') as zip_ref:
-            zip_ref.extractall(unzip_folder)
+            zip_ref.extractall(root_datasets_folder)
         os.remove(file_path)
         return self.query_next_dataset()
