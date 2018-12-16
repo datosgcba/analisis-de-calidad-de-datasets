@@ -35,4 +35,4 @@ Este script recorre los datasets listados en `datasets/manifest.json`, descarga 
 desde [data.buenosaires.gob.ar](https://data.buenosaires.gob.ar/) y los descomprime en carpetas correspondientes dentro
 de `datasets`. Si para un dataset su carpeta ya existe entonces se saltea su descarga. Para forzar la descarga, 
 eliminar su carpeta y volver a correr el script. 
-> El tamaño total de la descarga al momento de la elaboración de este script es de aproximadamente 2.5gb
+> El tamaño total de la descarga al momento de la elaboración de este script es de aproximadamente 7.7gb
