@@ -43,7 +43,7 @@ class DatasetsSpider(scrapy.Spider):
         logging.basicConfig(level=logging.INFO)
         for logger_name in loggers:
             logging.getLogger(logger_name).setLevel(logging.ERROR)
-        super().__init__(*args, **kwargs)
+        super(DatasetsSpider, self).__init__(*args, **kwargs)
 
     @staticmethod
     def scoped_lambda(func, param):
@@ -96,6 +96,6 @@ class DatasetsSpider(scrapy.Spider):
                 zip_ref.extractall(root_datasets_folder)
                 self.logger.info('Unzipped! Removing the zip file')
                 os.remove(file_path)
-        except zipfile.BadZipFile:
+        except zipfile.BadZipfile:
             self.logger.error('Unable to unzip file %s BAD ZIPFILE', file_path)
         return self.query_next_dataset()

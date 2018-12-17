@@ -5,9 +5,9 @@ Este repositorio pretende ser un registro del analisis de calidad de los dataset
 
 ## Setup
 
-Crear por única vez un [virtualenv](https://virtualenv.pypa.io/en/latest/) usando python 3.
+Crear por única vez un [virtualenv](https://virtualenv.pypa.io/en/latest/) usando python 2.
 ```bash
-virtualenv -p python3 venv
+virtualenv venv
 ```
 
 Para cada comando en adelante, es necesario previamente activar el virtualenv. 
