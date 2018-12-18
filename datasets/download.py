@@ -66,7 +66,7 @@ class DatasetsSpider(scrapy.Spider):
             self.logger.info('No dataset left. Ending crawler')
             return
         self.logger.info('Querying dataset %s', dataset)
-        url = 'https://data.buenosaires.gob.ar/api/datasets?fields=id&slug=%s' % dataset
+        url = 'https://data.buenosaires.gob.ar/api/datasets?fields=id,slug&slug=%s' % dataset
         yield Request(
             url=url,
             callback=self.scoped_lambda(self.get_download_url, dataset),
@@ -77,7 +77,7 @@ class DatasetsSpider(scrapy.Spider):
         response_data = json.loads(response.body)['data']
         if len(response_data) == 0:
             return
-        dataset_id = response_data[0]['id']
+        dataset_id = [dataset_data for dataset_data in response_data if dataset_data['slug'] == dataset][0]['id']
         self.logger.info('Got id %s for %s. Downloading zip file...', dataset_id, dataset)
         url = 'https://data.buenosaires.gob.ar/api/datasets/%s/download' % dataset_id
         yield Request(
