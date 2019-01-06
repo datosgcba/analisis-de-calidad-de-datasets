@@ -1,11 +1,12 @@
 from data_cleaner import DataCleaner
-import os
+from os import path, makedirs
+from cleaner_rules import cleaner_rules
 
 
-def clean_and_save(input_path, output_path):
-    output_folder = os.path.join(os.path.dirname(output_path))
-    if not os.path.exists(output_folder):
-        os.makedirs(output_folder)
+def clean_and_save(input_path, output_path, rules):
+    output_folder = path.join(path.dirname(output_path))
+    if not path.exists(output_folder):
+        makedirs(output_folder)
 
     dc = DataCleaner(input_path)
     dc.clean(rules)
@@ -17,42 +18,35 @@ def clean_and_save(input_path, output_path):
     )
 
 
-def rename_column(column_tuples):
-    columns = []
-    for original_name, new_name in column_tuples:
-        columns.append({
-            "field": original_name,
-            "new_field": new_name
-        })
-    return {"renombrar_columnas": columns}
+def make_dataset_path(*paths):
+    return path.join(root_datasets_folder, *paths)
+
+
+def clean_dataset_path(original_dataset_path):
+    dirname, filename = path.split(original_dataset_path)
+    return path.join(dirname, 'clean', filename)
+
+
+def rules_for_dataset(dataset_path):
+    dataset_folder_path, dataset_filename = path.split(dataset_path)
+    dataset_root_folder, dataset_folder_name = path.split(dataset_folder_path)
+    dataset_path = path.join(dataset_folder_name, dataset_filename)
+    if dataset_path in cleaner_rules:
+        return cleaner_rules[dataset_path]
+    dirname = path.dirname(dataset_path)
+    if dirname in cleaner_rules:
+        return cleaner_rules[dirname]
+    raise Exception("No rules found for %s" % dataset_path)
 
 
 if __name__ == '__main__':
-    root_datasets_folder = os.path.dirname(__file__)
-    csv_input = os.path.join(root_datasets_folder, "obras-registradas", "obras-registradas.csv")
-    csv_output = os.path.join(root_datasets_folder, "obras-registradas", "clean", "obras-registradas.csv")
+    root_datasets_folder = path.dirname(__file__)
 
-    rules = [
-        rename_column([
-            # Columnas que no se modifican:
-            ("lat", "lat"),
-            ("long", "long"),
-            ("direccion", "direccion"),
-            ("codigo_postal", "codigo_postal"),  # TODO: revisar los nombres de las columnas de los codigos postales
-            ("codigo_postal_argentino", "codigo_postal_argentino"),
-            ("tipo_obra", "tipo_obra"),
-            ("destino", "destino"),
-            ("barrio", "barrio"),
-            ("comuna", "comuna"),
-            ("zonificaci", "zonificacion"),  # TODO: revisar ?
-            # Columnas que si se modifican
-            ("fecha_esta", "estado_fecha"),
-            ("n_expedien", "expediente_numero"),
-            ("f_expedien", "expediente_fecha"),
-            ("calle", "direccion_calle"),
-            ("altura", "direccion_altura"),
-            ("smp", "seccion_manzana_parcela"),
-            ("m2", "superficie_m2")
-        ])
+    target_datasets = [
+        make_dataset_path("obras-registradas", "obras-registradas.csv")
     ]
-    clean_and_save(csv_input, csv_output)
+
+    for csv_input in target_datasets:
+        csv_output = clean_dataset_path(csv_input)
+        rules = rules_for_dataset(csv_input)
+        clean_and_save(csv_input, csv_output, rules)
