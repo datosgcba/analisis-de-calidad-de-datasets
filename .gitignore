@@ -7,3 +7,4 @@ __pycache__/
 datasets/*
 !datasets/*.py
 !datasets/manifest.json
+*.log
