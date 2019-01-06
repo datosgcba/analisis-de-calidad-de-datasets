@@ -36,3 +36,12 @@ desde [data.buenosaires.gob.ar](https://data.buenosaires.gob.ar/) y los descompr
 de `datasets`. Si para un dataset su carpeta ya existe entonces se saltea su descarga. Para forzar la descarga, 
 eliminar su carpeta y volver a correr el script. 
 > El tamaño total de la descarga al momento de la elaboración de este script es de aproximadamente 7.7gb
+
+
+## Referencias
+
+El análisis y limpieza de los datasets realizado en este repositorio sigue los lineamientos de la [guia de datos 
+abiertos](https://datosgcba.github.io/guia-datos/guia-abiertos/) del Gobierbo de la Ciudad de Buenos Aires, y utiliza
+como herramienta el modulo [Data Cleaner](https://github.com/datosgobar/data-cleaner/) desarrollado por la Dirección de
+Datos Abiertos del Gobierno Nacional Argentino
+
