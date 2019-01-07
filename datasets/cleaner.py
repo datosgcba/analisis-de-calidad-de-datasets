@@ -1,3 +1,4 @@
+# coding=utf-8
 from data_cleaner import DataCleaner
 from os import path, makedirs
 from cleaner_rules import target_datasets

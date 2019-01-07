@@ -21,6 +21,12 @@
 # Estandar WKT para datos geograficos
 
 
+def remove_colum(column_name):
+    return {"remover_columnas": [
+        {"field": column_name},
+    ]}
+
+
 def rename_column(column_tuples):
     columns = []
     for original_name, new_name in column_tuples:
