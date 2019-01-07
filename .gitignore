@@ -8,3 +8,4 @@ datasets/*
 !datasets/*.py
 !datasets/manifest.json
 *.log
+*.csv
