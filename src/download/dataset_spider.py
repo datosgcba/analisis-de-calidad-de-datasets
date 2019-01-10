@@ -12,10 +12,10 @@ class DatasetSpider(scrapy.Spider):
     authorizaton_bearer = ''
 
     def __init__(self, *args, **kwargs):
-        self.manifest = [dataset for dataset in kwargs['manifest']]
         self.download_datasets_folder = kwargs['download_datasets_folder']
         self.log = kwargs['logger']
         super(DatasetSpider, self).__init__(*args, **kwargs)
+        self.manifest = [dataset for dataset in kwargs['manifest']]
 
     def next_dataset(self):
         while len(self.manifest) != 0:
@@ -45,7 +45,7 @@ class DatasetSpider(scrapy.Spider):
         dataset = self.next_dataset()
         if dataset is None:
             return
-        self.log.info('Querying dataset %s' % self.log.green(dataset))
+        self.log.info('Querying dataset %s' % dataset)
         url = 'https://data.buenosaires.gob.ar/api/datasets?fields=id,slug&slug=%s' % dataset
         yield Request(
             url=url,
@@ -58,8 +58,7 @@ class DatasetSpider(scrapy.Spider):
         if len(response_data) == 0:
             return
         dataset_id = [dataset_data for dataset_data in response_data if dataset_data['slug'] == dataset][0]['id']
-        self.log.info(
-            'Got id %s for %s. Downloading zip file...' % (self.log.green(dataset_id), self.log.green(dataset)))
+        self.log.info('Downloading %s.zip...' % dataset)
         url = 'https://data.buenosaires.gob.ar/api/datasets/%s/download' % dataset_id
         yield Request(
             url=url,
@@ -78,6 +77,7 @@ class DatasetSpider(scrapy.Spider):
             with zipfile.ZipFile(file_path, 'r') as zip_ref:
                 zip_ref.extractall(self.download_datasets_folder)
                 self.log.info('Unzipped! Removing the zip file')
+                self.log.info('Dataset %s downloaded successfully' % self.log.green(dataset))
                 remove(file_path)
         except zipfile.BadZipfile:
             self.log.error('Unable to unzip file %s.zip %s' % (dataset, self.log.red('BAD ZIPFILE')))

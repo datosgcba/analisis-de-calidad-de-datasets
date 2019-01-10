@@ -15,22 +15,20 @@ routine_arguments = {
 }
 with open(manifest_path, 'r') as manifest_file:
     routine_arguments['manifest'] = json.load(manifest_file)
+logger.info('Script started with %d datasets in the manifest' % len(routine_arguments['manifest']))
 
 routines = argument_parser()
 if routines.download:
-    logger.info(logger.green('Started downloader'))
     download(**routine_arguments)
 else:
     logger.info('Skipping downloader')
 
 if routines.data_cleaner:
-    logger.info(logger.green('Started data-cleaner'))
     cleaner(**routine_arguments)
 else:
     logger.info('Skipping data-cleaner')
 
 if routines.upload:
-    logger.info(logger.green('Started upload'))
     upload(**routine_arguments)
 else:
     logger.info('Started upload')
