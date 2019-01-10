@@ -1,37 +1,14 @@
+import json
 import scrapy
 from scrapy.http import Request
-import json
-import os
 from scrapy.http import FormRequest
 import zipfile
 import logging
-from scrapy.utils.log import configure_logging
-
-configure_logging(install_root_handler=False)
-logging.basicConfig(
-    level=logging.WARNING
-)
-
-root_datasets_folder = os.path.dirname(__file__)
+from os import path, remove, makedirs
 
 
-class DatasetIterator:
-    manifest_path = os.path.join(root_datasets_folder, 'manifest.json')
-    with open(manifest_path, 'r') as f:
-        manifest = json.load(f)
-
-    @classmethod
-    def next_dataset(cls):
-        while len(cls.manifest) != 0:
-            candidate_dataset = cls.manifest.pop()
-            dataset_folder = os.path.join(root_datasets_folder, candidate_dataset)
-            if not os.path.exists(dataset_folder):
-                return candidate_dataset
-        return None
-
-
-class DatasetsSpider(scrapy.Spider):
-    name = 'datasetsspider'
+class DatasetSpider(scrapy.Spider):
+    name = 'datasetspider'
     authorizaton_bearer = ''
 
     def __init__(self, *args, **kwargs):
@@ -43,7 +20,17 @@ class DatasetsSpider(scrapy.Spider):
         logging.basicConfig(level=logging.INFO)
         for logger_name in loggers:
             logging.getLogger(logger_name).setLevel(logging.ERROR)
-        super(DatasetsSpider, self).__init__(*args, **kwargs)
+        self.manifest = [dataset for dataset in kwargs['manifest']]
+        self.download_datasets_folder = kwargs['download_datasets_folder']
+        super(DatasetSpider, self).__init__(*args, **kwargs)
+
+    def next_dataset(self):
+        while len(self.manifest) != 0:
+            candidate_dataset = self.manifest.pop()
+            dataset_folder = path.join(self.download_datasets_folder, candidate_dataset)
+            if not path.exists(dataset_folder):
+                return candidate_dataset
+        return None
 
     @staticmethod
     def scoped_lambda(func, param):
@@ -61,7 +48,7 @@ class DatasetsSpider(scrapy.Spider):
         return self.query_next_dataset()
 
     def query_next_dataset(self):
-        dataset = DatasetIterator.next_dataset()
+        dataset = self.next_dataset()
         if dataset is None:
             self.logger.info('No dataset left. Ending crawler')
             return
@@ -86,16 +73,18 @@ class DatasetsSpider(scrapy.Spider):
         )
 
     def save_file(self, response, dataset):
-        file_path = os.path.join(root_datasets_folder, '%s.zip' % dataset)
+        file_path = path.join(self.download_datasets_folder, '%s.zip' % dataset)
         self.logger.info('Saving zip file to %s', file_path)
+        if not path.exists(self.download_datasets_folder):
+            makedirs(self.download_datasets_folder)
         with open(file_path, 'wb') as new_dataset_file:
             new_dataset_file.write(response.body)
         self.logger.info('Unzipping dataset...')
         try:
             with zipfile.ZipFile(file_path, 'r') as zip_ref:
-                zip_ref.extractall(root_datasets_folder)
+                zip_ref.extractall(self.download_datasets_folder)
                 self.logger.info('Unzipped! Removing the zip file')
-                os.remove(file_path)
+                remove(file_path)
         except zipfile.BadZipfile:
             self.logger.error('Unable to unzip file %s BAD ZIPFILE', file_path)
         return self.query_next_dataset()

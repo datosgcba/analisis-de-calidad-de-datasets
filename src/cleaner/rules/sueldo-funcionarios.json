@@ -1,0 +1,373 @@
+[
+  {
+    "file": "sueldos-funcionarios-2012.csv",
+    "parse_options": {
+      "sep": ";"
+    },
+    "data-cleaner-rules": [
+      {
+        "renombrar_columnas": [
+          {
+            "field": "ANIO",
+            "new_field": "anio"
+          },
+          {
+            "field": "MES",
+            "new_field": "mes"
+          },
+          {
+            "field": "APELLIDO",
+            "new_field": "apellido"
+          },
+          {
+            "field": "NOMBRES",
+            "new_field": "nombre"
+          },
+          {
+            "field": "CARGO",
+            "new_field": "cargo"
+          },
+          {
+            "field": "ASIG_MENSUALES",
+            "new_field": "asignacion_mensual"
+          },
+          {
+            "field": "SALARIO_FAMILIAR",
+            "new_field": "salario_familiar"
+          },
+          {
+            "field": "DESCUENTOS_MENSUALES",
+            "new_field": "descuentos"
+          },
+          {
+            "field": "LIQUIDO",
+            "new_field": "liquido"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "file": "sueldos-funcionarios-2013.csv",
+    "parse_options": {
+      "sep": ";"
+    },
+    "data-cleaner-rules": [
+      {
+        "renombrar_columnas": [
+          {
+            "field": "anio",
+            "new_field": "anio"
+          },
+          {
+            "field": "mes",
+            "new_field": "mes"
+          },
+          {
+            "field": "apellido",
+            "new_field": "apellido"
+          },
+          {
+            "field": "nombre",
+            "new_field": "nombre"
+          },
+          {
+            "field": "cargo",
+            "new_field": "cargo"
+          },
+          {
+            "field": "asig_mensuales",
+            "new_field": "asignacion_mensual"
+          },
+          {
+            "field": "salario_familiar",
+            "new_field": "salario_familiar"
+          },
+          {
+            "field": "descuentos_mensuales",
+            "new_field": "descuentos"
+          },
+          {
+            "field": "liquido",
+            "new_field": "liquido"
+          }
+        ]
+      },
+      {
+        "remover_columnas": [
+          {
+            "field": "nromes"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "file": "sueldos-funcionarios-2014.csv",
+    "parse_options": {
+      "sep": ";"
+    },
+    "data-cleaner-rules": [
+      {
+        "renombrar_columnas": [
+          {
+            "field": "anio",
+            "new_field": "anio"
+          },
+          {
+            "field": "mes",
+            "new_field": "mes"
+          },
+          {
+            "field": "apellido",
+            "new_field": "apellido"
+          },
+          {
+            "field": "nombre",
+            "new_field": "nombre"
+          },
+          {
+            "field": "cargo",
+            "new_field": "cargo"
+          },
+          {
+            "field": "asig_mensuales",
+            "new_field": "asignacion_mensual"
+          },
+          {
+            "field": "salario_familiar",
+            "new_field": "salario_familiar"
+          },
+          {
+            "field": "descuentos_mensuales",
+            "new_field": "descuentos"
+          },
+          {
+            "field": "liquido",
+            "new_field": "liquido"
+          }
+        ]
+      },
+      {
+        "remover_columnas": [
+          {
+            "field": "nromes"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "file": "sueldos-funcionarios-2015.csv",
+    "parse_options": {
+      "sep": ";"
+    },
+    "data-cleaner-rules": [
+      {
+        "renombrar_columnas": [
+          {
+            "field": "AÑO",
+            "new_field": "anio"
+          },
+          {
+            "field": "MES",
+            "new_field": "mes"
+          },
+          {
+            "field": "APELLIDO",
+            "new_field": "apellido"
+          },
+          {
+            "field": "NOMBRES",
+            "new_field": "nombre"
+          },
+          {
+            "field": "CARGO",
+            "new_field": "cargo"
+          },
+          {
+            "field": "ASIG_MENSUALES",
+            "new_field": "asignacion_mensual"
+          },
+          {
+            "field": "SALARIO_FAMILIAR",
+            "new_field": "salario_familiar"
+          },
+          {
+            "field": "DESCUENTOS_MENSUALES",
+            "new_field": "descuentos"
+          },
+          {
+            "field": "LIQUIDO",
+            "new_field": "liquido"
+          }
+        ]
+      },
+      {
+        "remover_columnas": [
+          {
+            "field": "N"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "file": "sueldos-funcionarios-2016.csv",
+    "parse_options": {
+      "sep": ";"
+    },
+    "data-cleaner-rules": [
+      {
+        "renombrar_columnas": [
+          {
+            "field": "AÑO",
+            "new_field": "anio"
+          },
+          {
+            "field": "MES",
+            "new_field": "mes"
+          },
+          {
+            "field": "APELLIDO",
+            "new_field": "apellido"
+          },
+          {
+            "field": "NOMBRE",
+            "new_field": "nombre"
+          },
+          {
+            "field": "CARGO",
+            "new_field": "cargo"
+          },
+          {
+            "field": "TOTAL_DE_ASIGNACIONES",
+            "new_field": "asignacion_mensual"
+          },
+          {
+            "field": "SALARIO_FAMILIAR",
+            "new_field": "salario_familiar"
+          },
+          {
+            "field": "TOTAL_DE_DESCUENTOS",
+            "new_field": "descuentos"
+          },
+          {
+            "field": "LIQUIDO",
+            "new_field": "liquido"
+          }
+        ]
+      },
+      {
+        "remover_columnas": [
+          {
+            "field": "NUMERO"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "file": "sueldos-funcionarios-2017.csv",
+    "parse_options": {
+      "sep": ";"
+    },
+    "data-cleaner-rules": [
+      {
+        "renombrar_columnas": [
+          {
+            "field": "AÑO",
+            "new_field": "anio"
+          },
+          {
+            "field": "MES",
+            "new_field": "mes"
+          },
+          {
+            "field": "APELLIDO",
+            "new_field": "apellido"
+          },
+          {
+            "field": "NOMBRE",
+            "new_field": "nombre"
+          },
+          {
+            "field": "CARGO",
+            "new_field": "cargo"
+          },
+          {
+            "field": "TOTAL_DE_ASIGNACIONES",
+            "new_field": "asignacion_mensual"
+          },
+          {
+            "field": "SALARIO_FAMILIAR",
+            "new_field": "salario_familiar"
+          },
+          {
+            "field": "TOTAL_DE_DESCUENTOS",
+            "new_field": "descuentos"
+          },
+          {
+            "field": "LIQUIDO",
+            "new_field": "liquido"
+          }
+        ]
+      },
+      {
+        "remover_columnas": [
+          {
+            "field": "NUMERO"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "file": "sueldos-funcionarios-2018.csv",
+    "parse_options": {
+      "sep": ";"
+    },
+    "data-cleaner-rules": [
+      {
+        "renombrar_columnas": [
+          {
+            "field": "AÑO",
+            "new_field": "anio"
+          },
+          {
+            "field": "MES",
+            "new_field": "mes"
+          },
+          {
+            "field": "APELLIDO",
+            "new_field": "apellido"
+          },
+          {
+            "field": "NOMBRE",
+            "new_field": "nombre"
+          },
+          {
+            "field": "CARGO",
+            "new_field": "cargo"
+          },
+          {
+            "field": "TOTAL_ASIGNACIONES",
+            "new_field": "asignacion_mensual"
+          },
+          {
+            "field": "SALARIO_FAMILIAR",
+            "new_field": "salario_familiar"
+          },
+          {
+            "field": "DESCUENTOS",
+            "new_field": "descuentos"
+          },
+          {
+            "field": "LIQUIDO",
+            "new_field": "liquido"
+          }
+        ]
+      }
+    ]
+  }
+]

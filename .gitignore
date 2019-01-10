@@ -4,8 +4,9 @@ venv
 .DS_Store
 __pycache__/
 
-datasets/*
-!datasets/*.py
-!datasets/manifest.json
+downloaded-datasets
+cleaned-datasets
 *.log
 *.csv
+
+TODO

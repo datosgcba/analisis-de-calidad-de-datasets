@@ -1,0 +1,79 @@
+[
+  {
+    "file": "obras-registradas.csv",
+    "data-cleaner-rules": [
+      {
+        "renombrar_columnas": [
+          {
+            "field": "lat",
+            "new_field": "lat"
+          },
+          {
+            "field": "long",
+            "new_field": "long"
+          },
+          {
+            "field": "direccion",
+            "new_field": "direccion"
+          },
+          {
+            "field": "codigo_postal",
+            "new_field": "codigo_postal"
+          },
+          {
+            "field": "codigo_postal_argentino",
+            "new_field": "codigo_postal_argentino"
+          },
+          {
+            "field": "tipo_obra",
+            "new_field": "tipo_obra"
+          },
+          {
+            "field": "destino",
+            "new_field": "destino"
+          },
+          {
+            "field": "barrio",
+            "new_field": "barrio"
+          },
+          {
+            "field": "comuna",
+            "new_field": "comuna"
+          },
+          {
+            "field": "zonificaci",
+            "new_field": "zonificacion"
+          },
+          {
+            "field": "fecha_esta",
+            "new_field": "estado_fecha"
+          },
+          {
+            "field": "n_expedien",
+            "new_field": "expediente_numero"
+          },
+          {
+            "field": "f_expedien",
+            "new_field": "expediente_fecha"
+          },
+          {
+            "field": "calle",
+            "new_field": "direccion_calle"
+          },
+          {
+            "field": "altura",
+            "new_field": "direccion_altura"
+          },
+          {
+            "field": "smp",
+            "new_field": "seccion_manzana_parcela"
+          },
+          {
+            "field": "m2",
+            "new_field": "superficie_m2"
+          }
+        ]
+      }
+    ]
+  }
+]
