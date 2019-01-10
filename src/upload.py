@@ -1,2 +1,3 @@
 def upload(**kwargs):
-    pass
+    logger = kwargs['logger']
+    logger.info(logger.red('Upload not implemented yet'))
