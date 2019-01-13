@@ -325,7 +325,7 @@
   {
     "file": "sueldos-funcionarios-2018.csv",
     "parse_options": {
-      "sep": ";"
+      "sep": ","
     },
     "data-cleaner-rules": [
       {
