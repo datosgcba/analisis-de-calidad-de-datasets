@@ -1,6 +1,7 @@
 import logging
 from scrapy.crawler import CrawlerProcess
 from dataset_spider import DatasetSpider
+from os import path
 
 
 def disable_scrapy_loggers():
@@ -13,8 +14,20 @@ def disable_scrapy_loggers():
         logging.getLogger(logger_name).disabled = True
 
 
+def have_dataset_to_download(manifest, download_datasets_folder, **kwargs):
+    for dataset in manifest:
+        dataset_folder = path.join(download_datasets_folder, dataset)
+        if not path.exists(dataset_folder):
+            return True
+    return False
+
+
 def download(**kwargs):
     logger = kwargs['logger']
+    if not have_dataset_to_download(**kwargs):
+        logger.info('All datasets already downloaded. Skipping download routine')
+        return
+
     logger.info(logger.green('Started downloader'))
     disable_scrapy_loggers()
     process = CrawlerProcess(

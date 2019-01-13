@@ -8,5 +8,5 @@ downloaded-datasets
 cleaned-datasets
 *.log
 *.csv
-
+*.pyc
 TODO
