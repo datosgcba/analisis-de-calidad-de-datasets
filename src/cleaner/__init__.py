@@ -72,7 +72,7 @@ def cleaner(manifest, logger, clean_datasets_folder, download_datasets_folder):
             dataset_file = dataset_file_rules['file']
             csv_input = path.join(download_datasets_folder, dataset, dataset_file)
             if not path.exists(csv_input):
-                logger.info('Skipping missing file ' % logger.red(dataset_file))
+                logger.info('Skipping missing file %s' % logger.red(dataset_file))
                 continue
 
             output_dataset_folder = path.join(clean_datasets_folder, dataset)

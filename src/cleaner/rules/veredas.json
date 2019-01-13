@@ -1,0 +1,36 @@
+[
+  {
+    "file": "veredas.csv",
+    "parse_options": {
+      "sep": ";"
+    },
+    "data-cleaner-rules": [
+      {
+        "renombrar_columnas": [
+          {
+            "field": "WKT",
+            "new_field": "wkt"
+          }, {
+            "field": "ID",
+            "new_field": "id"
+          }, {
+            "field": "AREA",
+            "new_field": "area"
+          }, {
+            "field": "PERIMETER",
+            "new_field": "perimetro"
+          }, {
+            "field": "S",
+            "new_field": "seccion"
+          }, {
+            "field": "M",
+            "new_field": "manzanas"
+          }, {
+            "field": "S_M",
+            "new_field": "codigo_seccion_manzanas"
+          }
+        ]
+      }
+    ]
+  }
+]
