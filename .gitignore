@@ -6,7 +6,10 @@ __pycache__/
 
 downloaded-datasets
 cleaned-datasets
+tmp
 *.log
 *.csv
 *.pyc
 TODO
+
+ftp_password

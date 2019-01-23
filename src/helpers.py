@@ -1,5 +1,6 @@
 from argparse import ArgumentParser
 import logging
+import json
 
 
 def argument_parser():
@@ -7,7 +8,13 @@ def argument_parser():
     parser.add_argument('--no-download', action='store_false', dest='download')
     parser.add_argument('--no-data-cleaner', action='store_false', dest='data_cleaner')
     parser.add_argument('--no-upload', action='store_false', dest='upload')
+    parser.add_argument('--download-via-scrapy', action='store_true', dest='download_scrapy')
     return parser.parse_args()
+
+
+def load_json(filepath):
+    with open(filepath, 'r') as manifest_file:
+        return json.load(manifest_file)
 
 
 class Logger:

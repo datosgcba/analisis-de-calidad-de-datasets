@@ -1,6 +1,7 @@
 import logging
 from scrapy.crawler import CrawlerProcess
 from dataset_spider import DatasetSpider
+from ftp import download_from_ftp
 from os import path
 
 
@@ -22,13 +23,15 @@ def have_dataset_to_download(manifest, download_datasets_folder, **kwargs):
     return False
 
 
-def download(**kwargs):
+def download_via_ftp(**kwargs):
     logger = kwargs['logger']
-    if not have_dataset_to_download(**kwargs):
-        logger.info('All datasets already downloaded. Skipping download routine')
-        return
+    logger.info(logger.green('Started ftp downloader'))
+    download_from_ftp(**kwargs)
+    return
 
-    logger.info(logger.green('Started downloader'))
+
+def download_via_scrapy(logger, **kwargs):
+    logger.info(logger.green('Started scrapy downloader'))
     disable_scrapy_loggers()
     process = CrawlerProcess(
         {'USER_AGENT': 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)'},
@@ -36,3 +39,15 @@ def download(**kwargs):
     )
     process.crawl(DatasetSpider, **kwargs)
     process.start()
+
+
+def download(**kwargs):
+    logger = kwargs['logger']
+    if not have_dataset_to_download(**kwargs):
+        logger.info('All datasets already downloaded. Skipping download routine')
+        return
+
+    if kwargs['download_scrapy']:
+        download_via_scrapy(**kwargs)
+    else:
+        download_via_ftp(**kwargs)
