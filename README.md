@@ -24,18 +24,52 @@ pip install -r requirements.txt
 
 El repo contiene notebooks de [jupyter](https://jupyter.org/) en la carpeta `notebooks`
 
-## Datasets
+## Ejecutar rutinas
 
-Para descargar una copia de los datasets listados en el archivo `datasets/manifest.json`, correr el 
-scrapper de scrapy via:
+Para ejecutar las tres rutinas (descarga, limpieza, subida), ejecutar el comando 
 ```bash
-scrapy runspider datasets/download.py
+python main.py
 ```
-Este script recorre los datasets listados en `datasets/manifest.json`, descarga cada archivo comprimido correspondiente
-desde [data.buenosaires.gob.ar](https://data.buenosaires.gob.ar/) y los descomprime en carpetas correspondientes dentro
-de `datasets`. Si para un dataset su carpeta ya existe entonces se saltea su descarga. Para forzar la descarga, 
-eliminar su carpeta y volver a correr el script. 
-> El tamaño total de la descarga al momento de la elaboración de este script es de aproximadamente 7.7gb
+Para conocer en detalle qué hace cada una de las rutninas y poder ejecutar solo una de ellas, leer a continuación.
+
+## Descarga de datasets
+
+La rutina de descarga obtiene los datasets listados en el archivo `manifest.json`. Hay dos fuentes posibles para
+estos datasets: el ftp de buenosaires.gob.ar o el sitio [data.buenosaires.gob.ar](https://data.buenosaires.gob.ar/).
+
+Para descargar desde el servidor ftp, correr el siguiente comando
+```bash
+python main.py --no-data-cleaner --no-upload
+```
+
+Para descargar una copia de los datasets de [data.buenosaires.gob.ar](https://data.buenosaires.gob.ar/) usando el 
+scrapper de scrapy, correr el siguiente comando:
+```bash
+python main.py --no-data-cleaner --no-upload --download-via-scrapy
+```
+
+Ambas formas de descarga recorren los datasets listados en el archivo `manifest.json` y descargan los archivos 
+correspondientes a los datasets en él. Los datasets descargados son ubicados en la carpeta `downloaded-datasets`. Si 
+para un dataset su carpeta ya existe entonces se saltea su descarga. Para forzar la descarga, eliminar su carpeta y 
+volver a correr el script. 
+
+> El tamaño total de la descarga al momento de la elaboración de este script es de aproximadamente 9.15gb
+
+## Scripts de limpieza
+
+La rutina de limpieza aplica las reglas del [data-cleaner](https://github.com/datosgobar/data-cleaner/) ubicadas en
+`src/cleaner/rules` a los datasets que se encuentren en la carpeta `downloaded-datasets`. Como resultado se obtienen
+copias de los datasets en la carpeta `clean-datasets`
+
+Para solo aplicar las reglas de limpieza a los datasets descargados en la carpeta `downloaded-datasets`, 
+correr el comando:
+```bash
+python main.py --no-download --no-upload
+```
+
+## Subida de datasets
+
+TODO
 
 
 ## Referencias
