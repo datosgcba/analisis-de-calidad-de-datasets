@@ -58,7 +58,7 @@ def save_warnings(routine_warnings, logger):
             warnings_file.writelines(routine_warnings)
 
 
-def cleaner(manifest, logger, clean_datasets_folder, download_datasets_folder):
+def cleaner(manifest, logger, clean_datasets_folder, download_datasets_folder, **kwargs):
     logger.info(logger.green('Started data-cleaner'))
     create_folder_if_does_not_exists(clean_datasets_folder)
 

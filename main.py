@@ -34,4 +34,4 @@ else:
 if arguments.upload:
     upload(**routine_arguments)
 else:
-    logger.info('Started upload')
+    logger.info('Skipping upload')

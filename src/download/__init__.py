@@ -30,7 +30,8 @@ def download_via_ftp(**kwargs):
     return
 
 
-def download_via_scrapy(logger, **kwargs):
+def download_via_scrapy(**kwargs):
+    logger = kwargs['logger']
     logger.info(logger.green('Started scrapy downloader'))
     disable_scrapy_loggers()
     process = CrawlerProcess(
