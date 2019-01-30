@@ -2,7 +2,7 @@ from src.download import download
 from src.cleaner import cleaner
 from src.upload import upload
 from os import path
-from src.helpers import argument_parser, Logger, load_json
+from src.helpers import argument_parser, Logger, load_json, connect_ftp
 
 logger = Logger()
 script_path = path.abspath(path.dirname(__file__))
@@ -12,16 +12,12 @@ routine_arguments = {
     'clean_datasets_folder': path.join(script_path, 'clean-datasets'),
     'logger': logger,
     'manifest': load_json(path.join(script_path, 'manifest.json')),
-    'download_scrapy': arguments.download_scrapy
+    'download_scrapy': arguments.download_scrapy,
+    'connect_ftp': connect_ftp,
 }
 logger.info('Script started with %d datasets in the manifest' % len(routine_arguments['manifest']))
 
 if arguments.download:
-    password_file_path = path.join(script_path, 'ftp_password')
-    if not path.exists(password_file_path):
-        raise Exception('Missing ftp_password file')
-    with open(password_file_path, 'r') as password_file:
-        routine_arguments['ftp_password'] = password_file.read().strip()
     download(**routine_arguments)
 else:
     logger.info('Skipping downloader')

@@ -1,6 +1,8 @@
 from argparse import ArgumentParser
 import logging
 import json
+from ftplib import FTP
+from os import path
 
 
 def argument_parser():
@@ -15,6 +17,18 @@ def argument_parser():
 def load_json(filepath):
     with open(filepath, 'r') as manifest_file:
         return json.load(manifest_file)
+
+
+def connect_ftp():
+    script_path = path.dirname(__file__)
+    password_file_path = path.join(script_path, 'ftp_password')
+    if not path.exists(password_file_path):
+        raise Exception('Missing ftp_password file')
+    with open(password_file_path, 'r') as password_file:
+        ftp_password = password_file.read().strip()
+    ftp = FTP('ftp.buenosaires.gob.ar')
+    ftp.login('datosabiertos', ftp_password)
+    return ftp
 
 
 class Logger:

@@ -1,4 +1,3 @@
-from ftplib import FTP
 from os import path, makedirs
 
 
@@ -10,9 +9,8 @@ def download_dataset_files(ftp, target_folder):
         ftp.retrbinary('RETR ' + dataset_file, target_file.write)
 
 
-def download_from_ftp(manifest, ftp_password, logger, download_datasets_folder, **kwargs):
-    ftp = FTP('ftp.buenosaires.gob.ar')
-    ftp.login('datosabiertos', ftp_password)
+def download_from_ftp(manifest, logger, download_datasets_folder, connect_ftp, **kwargs):
+    ftp = connect_ftp()
     ftp.cwd('datasets')
     available_datasets = ftp.nlst()
 
