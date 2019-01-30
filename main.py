@@ -21,7 +21,7 @@ if arguments.download:
     if not path.exists(password_file_path):
         raise Exception('Missing ftp_password file')
     with open(password_file_path, 'r') as password_file:
-        routine_arguments['password'] = password_file.read().strip()
+        routine_arguments['ftp_password'] = password_file.read().strip()
     download(**routine_arguments)
 else:
     logger.info('Skipping downloader')
