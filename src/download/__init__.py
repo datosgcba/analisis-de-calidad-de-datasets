@@ -1,7 +1,7 @@
 import logging
 from scrapy.crawler import CrawlerProcess
-from dataset_spider import DatasetSpider
-from ftp import download_from_ftp
+from .dataset_spider import DatasetSpider
+from .ftp import download_from_ftp
 from os import path
 
 

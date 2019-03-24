@@ -18,9 +18,6 @@ def load_rules_for_dataset(dataset, logger):
 
 
 def apply_rules_to_dataset(csv_input, csv_output, dataset_file_rules, parse_options):
-    for key in parse_options:
-        parse_options[key] = parse_options[key].encode('ascii')
-
     with warnings.catch_warnings(record=True) as catched_warnings:
         dc = DataCleaner(csv_input, **parse_options)
         dc.clean(dataset_file_rules['data-cleaner-rules'])
@@ -44,7 +41,7 @@ def collect_warnings(datacleaner_warnings, dataset, dataset_file):
     dataset_divide = "###################################\n"
     dataset_info = "%s %s\n" % (dataset, dataset_file)
     warning_messages = [
-                           warning.message.message.replace("\n", " ") + "\n"
+                           str(warning.message).replace("\n", " ") + "\n"
                            for warning in datacleaner_warnings
                        ] + ["\n\n"]
     return [dataset_divide, dataset_info] + warning_messages
