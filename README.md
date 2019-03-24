@@ -5,7 +5,7 @@ Este repositorio pretende ser un registro del analisis de calidad de los dataset
 
 ## Setup
 
-Crear por única vez un [virtualenv](https://virtualenv.pypa.io/en/latest/) usando python 2.
+Crear por única vez un [virtualenv](https://virtualenv.pypa.io/en/latest/) usando python 3.6.3
 ```bash
 virtualenv venv
 ```
@@ -20,6 +20,9 @@ Instalar las dependencias listadas en el archivo `requirements.txt`
 pip install -r requirements.txt
 ```
 
+Para ejecutar las rutinas de descarga y subida es necesario crear un archivo con nombre `ftp_password` que tenga como
+contenido solo la contraseña del usuario `datosabiertos` para el ftp de gcba y ubicar el archivo en la carpeta `src`
+
 ## Notebooks
 
 El repo contiene notebooks de [jupyter](https://jupyter.org/) en la carpeta `notebooks`
@@ -30,6 +33,9 @@ Para ejecutar las tres rutinas (descarga, limpieza, subida), ejecutar el comando
 ```bash
 python main.py
 ```
+Es posible saltar la ejecución de las diferentes rutinas mediante el uso de parametros al momento de ejecutar el script.
+Los distintos parametros que acepta el script son: `--no-download`, `--no-data-cleaner`, `--no-upload` y 
+`--download-via-scrapy`.
 Para conocer en detalle qué hace cada una de las rutninas y poder ejecutar solo una de ellas, leer a continuación.
 
 ## Descarga de datasets
@@ -37,12 +43,12 @@ Para conocer en detalle qué hace cada una de las rutninas y poder ejecutar solo
 La rutina de descarga obtiene los datasets listados en el archivo `manifest.json`. Hay dos fuentes posibles para
 estos datasets: el ftp de buenosaires.gob.ar o el sitio [data.buenosaires.gob.ar](https://data.buenosaires.gob.ar/).
 
-Para descargar desde el servidor ftp, correr el siguiente comando
+Para solo descargar desde el servidor ftp, correr el siguiente comando
 ```bash
 python main.py --no-data-cleaner --no-upload
 ```
 
-Para descargar una copia de los datasets de [data.buenosaires.gob.ar](https://data.buenosaires.gob.ar/) usando el 
+Para solo descargar una copia de los datasets de [data.buenosaires.gob.ar](https://data.buenosaires.gob.ar/) usando el 
 scrapper de scrapy, correr el siguiente comando:
 ```bash
 python main.py --no-data-cleaner --no-upload --download-via-scrapy
@@ -53,7 +59,7 @@ correspondientes a los datasets en él. Los datasets descargados son ubicados en
 para un dataset su carpeta ya existe entonces se saltea su descarga. Para forzar la descarga, eliminar su carpeta y 
 volver a correr el script. 
 
-> El tamaño total de la descarga al momento de la elaboración de este script es de aproximadamente 9.15gb
+> El tamaño total de la descarga al momento de la elaboración de este script es de aproximadamente 7.45gb
 
 ## Scripts de limpieza
 
@@ -69,7 +75,13 @@ python main.py --no-download --no-upload
 
 ## Subida de datasets
 
-TODO
+La rutina de subida de datasets toma los datasets ubicados en la carpeta `clean-datasets` generada por la rutina de
+limpieza y sube los datasets al ftp en una carpeta tambien llamada `clean-datasets`.
+
+Para ejecutar solo la rutina de subida, ejecutar:
+```bash
+python main.py --no-download --no-data-cleaner
+```
 
 
 ## Referencias
