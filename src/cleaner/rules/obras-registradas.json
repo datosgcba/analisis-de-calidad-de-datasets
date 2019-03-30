@@ -73,6 +73,21 @@
             "new_field": "superficie_m2"
           }
         ]
+      },
+      {
+        "fecha_simple": [
+          {
+            "field": "expediente_fecha",
+            "time_format": "YYYY-MM-DD hh:mm:ss"
+          }
+        ]
+      },
+      {
+        "remover_filas_duplicadas": [
+          {
+            "all_fields": true
+          }
+        ]
       }
     ]
   }
