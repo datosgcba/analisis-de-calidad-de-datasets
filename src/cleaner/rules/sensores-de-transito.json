@@ -1,0 +1,32 @@
+[
+  {
+    "file": "sensores.csv",
+    "data-cleaner-rules": [
+      {
+        "remover_columnas": [
+          {
+            "field": "ubicacion_"
+          },
+          {
+            "field": "direccion_"
+          }
+        ]
+      },
+      {
+        "renombrar_columnas": [
+          {
+            "field": "año_insta",
+            "new_field": "ano_instalacion"
+          }
+        ]
+      },
+      {
+        "remover_filas_duplicadas": [
+          {
+            "all_fields": true
+          }
+        ]
+      }
+    ]
+  }
+]
