@@ -50,7 +50,7 @@ Scrapy==1.6.0
 service-identity==18.1.0
 Shapely==1.6.4.post2
 six==1.12.0
-Twisted==18.9.0
+Twisted==19.7.0
 unicodecsv==0.14.1
 Unidecode==1.0.23
 urllib3==1.24.1
