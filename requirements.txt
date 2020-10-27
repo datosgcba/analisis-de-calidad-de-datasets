@@ -11,7 +11,7 @@ click-plugins==1.0.4
 cligj==0.5.0
 constantly==15.1.0
 coverage==4.5.3
-cryptography==2.6.1
+cryptography==3.2
 cssselect==1.0.3
 cycler==0.10.0
 data-cleaner==0.1.21
