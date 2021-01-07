@@ -23,7 +23,7 @@ hyperlink==18.0.0
 idna==2.8
 incremental==17.5.0
 kiwisolver==1.0.1
-lxml==4.3.2
+lxml==4.6.2
 matplotlib==3.0.3
 mock==2.0.0
 munch==2.3.2
