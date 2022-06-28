@@ -1,4 +1,4 @@
-arrow==0.13.1
+arrow==0.15.1
 asn1crypto==0.24.0
 attrs==19.1.0
 Automat==0.7.0
